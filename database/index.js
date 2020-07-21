@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   mongoose
     .connect(
-      'mongodb+srv://Falcons:Falcons@greenfield.64vuq.mongodb.net/banktesting?retryWrites=true&w=majority',
+      'mongodb+srv://Falcons:Falcons@greenfield.64vuq.mongodb.net/BankOptm?retryWrites=true&w=majority',
       { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
     )
     .then(() => {
@@ -13,30 +13,25 @@ const connectDB = async () => {
     });
 };
 
-const signupSchema = mongoose.Schema({
-  creditcard: { type: Number, required: true, unique: true },
+const UserSchema = mongoose.Schema({
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   idnumber: { type: Number, required: true, unique: true },
-  age: { type: String, required: true },
-  occupation: { type: String, required: true },
+  age: { type: Number, required: true },
   phonenumber: { type: Number, required: true },
+  occupation: { type: String, required: true },
   gender: { type: String, required: true },
-  signin: [Date],
-  date: { type: Date, default: Date.now },
+  signin: { type: Date, default: Date.now },
+  creditcard: { type: Number, required: true, unique: true },
+  curType: { type: String, require: true },
+  total: { type: Number, default: 0 },
+  lastwitdraw: { type: Number, default: 0 },
+  lastdeposite: { type: Number, default: 0 },
 });
 
-const accountSchema = new mongoose.Schema({
-  creditcard: { type: Number, required: true, unique: true },
-  total: { type: Number, required: true },
-  lastwitdraw: { type: Number, required: true, default: 0 },
-  lastdeposite: { type: Number, required: true, default: 0 },
-});
-const signUp = mongoose.model('singUp', signupSchema);
-const account = mongoose.model('account', accountSchema);
+const UserModel = mongoose.model('Users', UserSchema);
 
 module.exports.connectDB = connectDB;
-module.exports.signUp = signUp;
-module.exports.account = account;
+module.exports.UserModel = UserModel;
