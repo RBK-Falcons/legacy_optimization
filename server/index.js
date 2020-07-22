@@ -135,7 +135,7 @@ app.get('/getAllCur', async (req, res) => {
 ////////////////////////////////////////////////////////////////////
 
 // For convert the currency to another
-app.get('/convert', async (req, res) => {
+app.post('/convert', async (req, res) => {
   const { from, to, amount } = req.body;
   const k = `${from}_${to}`;
   await axios
