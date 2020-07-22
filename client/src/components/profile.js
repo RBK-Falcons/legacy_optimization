@@ -45,6 +45,7 @@ class Profile extends React.Component {
                   <li>Fisrt Name: Ahmed</li>
                   <li>Last Name: Abd</li>
                   <li>Age: 33</li>
+                  <li>Balance: 2510$</li>
                   <li>Joining Date: -</li>
                 </ul>
               </div>

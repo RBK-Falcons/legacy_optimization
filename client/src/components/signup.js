@@ -54,7 +54,6 @@ class SignUp extends React.Component {
       })
       .then((response) => {
         this.setState({ user: response.data });
-        console.log('registered');
       })
       .catch((err) => {
         console.log(err);

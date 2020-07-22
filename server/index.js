@@ -81,7 +81,7 @@ app.post('/verifyCD', async (req, res) => {
 // //////////////////////////////////////////////////////////////////////////////
 
 //  This is for signing-in part
-app.get('/signin', async (req, res) => {
+app.post('/signin', async (req, res) => {
   var { email, password } = req.body;
   await UserModel.find({ email, password })
     .then((response) => {

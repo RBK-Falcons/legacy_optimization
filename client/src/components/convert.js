@@ -11,6 +11,7 @@ class Convert extends React.Component {
         <div className='overlay'>
           <div>
             <form>
+              <input type='text' placeholder='Enter Amount' />
               <select className='ct'>
                 <option>Choose...</option>
                 <option>USD (US$)</option>
@@ -18,7 +19,7 @@ class Convert extends React.Component {
                 <option>GBP (Â£)</option>
               </select>
 
-              <label>To</label>
+              <p>To</p>
 
               <select className='ct'>
                 <option>Choose...</option>
@@ -28,6 +29,7 @@ class Convert extends React.Component {
               </select>
               <button className='btn'>Convert</button>
             </form>
+            <p className='converter'>154.515$</p>
           </div>
         </div>
       </div>
