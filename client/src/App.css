@@ -248,9 +248,19 @@ select {
 }
 .profile .left {
   float: left;
-  padding: 5;
-  margin: 50px;
+  width: 64%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 50px;
 }
+.profile .right {
+  float: right;
+  width: 30%;
+  padding: 20px;
+  text-align: center;
+  margin-top: 75px;
+}
+
 .profile .info {
   background-color: rgb(255, 255, 255, 0.6);
   border-radius: 3px;
@@ -538,3 +548,24 @@ select {
 }
 
 /* End Convert Page */
+
+/* Start API Page */
+
+.api {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 30px 50px;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: "arial", serif;
+  font-weight: bold;
+}
+.currency {
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: -50px 0 40px 0;
+  display: block;
+  text-align: center;
+}
+
+/* End API Page */

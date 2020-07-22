@@ -1,4 +1,5 @@
 import React from 'react';
+import Change from './api';
 
 class Profile extends React.Component {
   state = {
@@ -66,6 +67,9 @@ class Profile extends React.Component {
                   </li>
                 </ul>
               </div>
+            </div>
+            <div className='right'>
+              <Change />
             </div>
           </div>
         </div>
