@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // this is the sigup component which saves the user's info the they sign up
 class SignUp extends React.Component {
@@ -15,6 +15,7 @@ class SignUp extends React.Component {
     age: '',
     occupation: '',
     phonenumber: '',
+    user: null,
   };
 
   handleChange(e) {
@@ -23,37 +24,36 @@ class SignUp extends React.Component {
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-
-    axios
-      .post('/createUser')
+    console.log('next is clicked');
+    const {
+      firstname,
+      lastname,
+      idnumber,
+      curType,
+      email,
+      password,
+      gender,
+      age,
+      occupation,
+      phonenumber,
+    } = this.state;
+    await axios
+      .post('/createUser', {
+        firstname,
+        lastname,
+        idnumber,
+        curType,
+        email,
+        password,
+        gender,
+        age,
+        occupation,
+        phonenumber,
+      })
       .then((response) => {
-        var {
-          firstname,
-          lastname,
-          idnumber,
-          curType,
-          email,
-          password,
-          gender,
-          age,
-          occupation,
-          phonenumber,
-        } = response.data;
-
-        this.setState({
-          firstname,
-          lastname,
-          idnumber,
-          curType,
-          email,
-          password,
-          gender,
-          age,
-          occupation,
-          phonenumber,
-        });
+        this.setState({ user: response.data });
       })
       .catch((err) => {
         console.log(err);
@@ -61,6 +61,18 @@ class SignUp extends React.Component {
   }
 
   render() {
+    if (this.state.user !== null) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/verifyCardNumber',
+            state: {
+              user: this.state.user,
+            },
+          }}
+        />
+      );
+    }
     return (
       <div className='signup'>
         <div className='auth'>
@@ -184,7 +196,7 @@ class SignUp extends React.Component {
                     onChange={this.handleChange.bind(this)}
                   />
                 </div>
-                <button className='btn'>Next</button>
+                <button className='btn'>Register</button>
               </form>
             </div>
           </div>

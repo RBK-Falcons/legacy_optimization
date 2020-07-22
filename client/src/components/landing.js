@@ -9,9 +9,7 @@ class Landing extends React.Component {
         <div className='overlay'>
           {/* <Navbar/> */}
           <h2 className='title'>
-            <span className='x'>
-              X
-            </span>
+            <span className='x'>X</span>
             change
           </h2>
           <Link to='/signup' className='first'>
