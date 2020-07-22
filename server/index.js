@@ -6,13 +6,14 @@ const connectDB = db.connectDB;
 const UserModel = db.UserModel;
 const sendEmail = require('../Email');
 const axios = require('axios');
+const { response } = require('express');
 
 app.use(express.json({ extended: false }));
 
 connectDB();
 ////////////// starting watermelon ////////////////
 
-// for the first step of signing up, it sends and email with the credit card number.
+// For the first step of signing up, it sends and email with the credit card number.
 app.post('/createUser', async (req, res) => {
   var creditcard = Math.floor(Math.random() * 999999999 + 1000000000);
   let {
@@ -54,7 +55,7 @@ app.post('/createUser', async (req, res) => {
     });
 });
 
-// the second step of siging up after recieving the credit card number.
+// The second step of siging up after recieving the credit card number.
 app.post('/verifyCD', async (req, res) => {
   let { creditcard, total } = req.body;
   await UserModel.find({ creditcard })
@@ -79,7 +80,7 @@ app.post('/verifyCD', async (req, res) => {
 
 // //////////////////////////////////////////////////////////////////////////////
 
-//  this is for signing-in part
+//  This is for signing-in part
 app.get('/signin', async (req, res) => {
   var { email, password } = req.body;
   await UserModel.find({ email, password })
@@ -95,7 +96,7 @@ app.get('/signin', async (req, res) => {
     });
 });
 
-// ////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 // /// used for displaying user's finantial info
 // app.get('/profile/:creditcard', (req, res) => {
@@ -114,6 +115,92 @@ app.get('/signin', async (req, res) => {
 //       console.log('error in finding for display======>', err);
 //     });
 // });
+
+//////////////////////////////////////////////////////////////////
+// For displaying currency prices
+
+app.get('/getAllCur', async (req, res) => {
+  await axios
+    .get(
+      'http://api.currencylayer.com/live?access_key=8b428808e220c71b4622a3c5b1f7f672'
+    )
+    .then((result) => {
+      res.send(result.data.quotes);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+////////////////////////////////////////////////////////////////////
+
+// For convert the currency to another
+app.get('/convert', async (req, res) => {
+  const { from, to, amount } = req.body;
+  const k = `${from}_${to}`;
+  await axios
+    .get(
+      `https://free.currconv.com/api/v7/convert?apiKey=c6ee00f537d447b6a182&q=${from}_${to}&compact=y`
+    )
+    .then((response) => {
+      var oneAmount = response.data[k].val;
+      var total = amount * oneAmount;
+      res.status(200).send('' + total);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+///////////////////////////////////////////////////////////////////
+
+// this is for the deposite part, it looks for the credit card number provided and updates user's info accordingly.
+
+app.put('/deposit', async (req, res) => {
+  var { creditcard, amount } = req.body;
+  await UserModel.where({ creditcard })
+    .update({ $inc: { total: amount }, $set: { lastdeposite: amount } })
+    .exec()
+    .then((response) => {
+      res.send(`${amount} was added to your account`);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+////////////////////////////////////////////////////////////////
+
+// This is for the withdraw part, it looks for the credit card number provided and updates user's info accordingly.
+
+// app.put('/withdraw', async (req, res) => {
+//   var { creditcard, amount } = req.body;
+
+//   await UserModel.find({ creditcard })
+//     .then(async (response) => {
+//       if (response.length == 0) {
+//         res.status(500).send('There is no user with this creditcart');
+//         return;
+//       }
+//       if (response.total - amount < 0) {
+//         res.status(500).send(`Insufficiant Balance! Cannot withdraw ${amount}`);
+//       }
+//       await UserModel.where({ creditcard })
+//         .update({ $inc: { total: amount }, $set: { lastdeposite: amount } })
+//         .exec()
+//         .then((response) => {
+//           res.send(`${amount} was removed to your account`);
+//         })
+//         .catch((err) => {
+//           res.status(500).send(err);
+//         });
+//     })
+//     .catch((err) => {
+//       res.status(500).send(err);
+//     });
+// });
+
+// /////////////////////////////////////////////////////////////////////
 
 // //// this promise hell is for transferring  money from one account to another
 // app.get('/transfer', (req, res) => {
@@ -188,97 +275,6 @@ app.get('/signin', async (req, res) => {
 
 // //////////////////////////////////////////////////////////////////////////
 
-// // for displaying currency prices
-
-// app.get('/api/change', (req, res) => {
-//   axios
-//     .get(
-//       'http://api.currencylayer.com/live?access_key=8b428808e220c71b4622a3c5b1f7f672'
-//     )
-//     .then((result) => {
-//       console.log(result.data.quotes);
-//       res.send(result.data.quotes);
-//     })
-//     .catch((err) => {
-//       console.log('Error', err);
-//     });
-// });
-
-// /////////////////////////////////////////////////////////////////
-// // this is for the withdraw part, it looks for the credit card number provided and updates user's info accordingly.
-
-// app.put('/withdraw', (req, res) => {
-//   var { creditcard, number } = req.body;
-
-//   account
-//     .find({ creditcard })
-//     .then((result) => {
-//       console.log('credit found for update');
-//       if (result.length !== 0) {
-//         if (result[0].total - number > 0) {
-//           var newTotal = result[0].total - number;
-//           var withdraw = result[0].lastwitdraw + number;
-//           account
-//             .update(
-//               { creditcard: creditcard },
-//               { $set: { total: newTotal, lastwitdraw: number } },
-//               { upsert: true }
-//             )
-//             .then((result) => {
-//               res.send(`Successfully Withdrew ${number}`);
-//               console.log('info updated');
-//             })
-//             .catch((err) => {
-//               console.log('cannot update ==========>', err);
-//             });
-//         } else {
-//           res.send(`Insufficiant Balance! Cannot withdraw ${number}`);
-//         }
-//       } else {
-//         res.send('Invalid Credit card');
-//       }
-//     })
-//     .catch((err) => {
-//       console.log('failed to find credit to update', err);
-//     });
-// });
-
-// /////////////////////////////////////////////////////////////////////
-// // this is for the deposite part, it looks for the credit card number provided and updates user's info accordingly.
-
-// app.put('/deposit', (req, res) => {
-//   var { creditcard, number } = req.body;
-
-//   account
-//     .find({ creditcard })
-//     .then((result) => {
-//       console.log('credit found for update');
-//       if (result.length !== 0) {
-//         var newTotal = result[0].total + number;
-//         var deposit = result[0].lastdeposite + number;
-//         account
-//           .update(
-//             { creditcard: creditcard },
-//             { $set: { total: newTotal, lastdeposite: number } },
-//             { upsert: true }
-//           )
-//           .then((result) => {
-//             res.send(`Successfully deposited ${number}`);
-//             console.log('info updated');
-//           })
-//           .catch((err) => {
-//             console.log('cannot update ==========>', err);
-//           });
-//       } else {
-//         res.send('Invalid Credit Card');
-//       }
-//     })
-//     .catch((err) => {
-//       console.log('failed to find credit to update', err);
-//     });
-// });
-
-////////////// end watermelon //////////////////
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
