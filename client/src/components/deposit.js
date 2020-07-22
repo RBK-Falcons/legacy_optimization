@@ -107,7 +107,6 @@ class Deposit extends React.Component {
                 onChange={this.handleChange.bind(this)}
               >
                 <option>Choose...</option>
-                <option>USD</option>
                 {this.state.allCur.map((e, i) => {
                   return <option key={i}>{e}</option>;
                 })}
