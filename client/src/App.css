@@ -19,6 +19,7 @@
   position: relative;
   margin: 20px;
   transition: all 0.3s linear;
+  text-decoration: none;
 }
 .btn:hover {
   background-color: #03256c;
@@ -192,3 +193,331 @@ select {
 }
 
 /* End SignIn-Up Page */
+
+/* Start Account Page */
+
+.account .auth .overlay > div {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 3px;
+  padding: 50px;
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom: auto;
+}
+
+.account .auth .overlay > div label {
+  text-align: left;
+  top: 0px;
+  left: 0px;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.account .auth .overlay > div input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.account .auth .overlay > div input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #909590;
+}
+
+/* End Account Page */
+
+/* Start Profile Page */
+
+.profile {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.profile .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.profile .left {
+  float: left;
+  padding: 5;
+  margin: 50px;
+}
+.profile .info {
+  background-color: rgb(255, 255, 255, 0.6);
+  border-radius: 3px;
+  padding: 30px 50px;
+  margin-top: 100px;
+  margin-bottom: auto;
+  font-family: "arial", serif;
+  font-weight: bold;
+}
+.profile .info ul li {
+  display: block;
+  text-decoration: none;
+  font-size: 23px;
+  font-family: "arial", serif;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* End Profile Page */
+
+/* Start Deposit Page */
+
+.deposit {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.deposit .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.deposit .overlay > div {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 3px;
+  padding: 50px;
+  width: 500px;
+  margin: 18vh auto;
+  margin-bottom: auto;
+}
+
+.deposit .overlay > div label {
+  text-align: left;
+  top: 0px;
+  left: 0px;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.deposit .overlay > div input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.deposit .overlay > div input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #909590;
+}
+
+/* End Deposit Page */
+
+/* Start Withdraw Page */
+
+.withdraw {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.withdraw .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.withdraw .overlay > div {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 3px;
+  padding: 50px;
+  width: 500px;
+  margin: 18vh auto;
+  margin-bottom: auto;
+}
+
+.withdraw .overlay > div label {
+  text-align: left;
+  top: 0px;
+  left: 0px;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.withdraw .overlay > div input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.withdraw .overlay > div input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #909590;
+}
+
+/* End Withdraw Page */
+
+/* Start Transfer Page */
+
+.transfer {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.transfer .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.transfer .overlay > div {
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 3px;
+  padding: 50px;
+  width: 500px;
+  margin: 10vh auto;
+  margin-bottom: auto;
+}
+
+.transfer .overlay > div label {
+  text-align: left;
+  top: 0px;
+  left: 0px;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.transfer .overlay > div input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.transfer .overlay > div input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #909590;
+}
+
+/* End Transfer Page */
+
+/* Start Display Page */
+
+.display {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.display .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.display .overlay > div {
+  background-color: rgb(255, 255, 255, 0.7);
+  border-radius: 3px;
+  padding: 50px;
+  width: 500px;
+  margin: 30vh auto;
+  margin-bottom: auto;
+}
+
+.display .overlay > div label {
+  text-align: left;
+  top: 0px;
+  left: 0px;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.display .overlay > div input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+.display .overlay > div input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #909590;
+}
+
+/* End Display Page */
+
+/* Start Convert Page */
+
+.convert {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.convert .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.convert .overlay > div {
+  background-color: rgb(255, 255, 255, 0.7);
+  border-radius: 3px;
+  padding: 50px;
+  width: 500px;
+  margin: 30vh auto;
+  margin-bottom: auto;
+}
+
+.convert .overlay > div label {
+  text-align: left;
+  top: 0px;
+  left: 0px;
+  font-size: 17px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.convert .overlay > div .ct {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  margin-bottom: 25px;
+  display: inline-block;
+}
+
+/* End Convert Page */
