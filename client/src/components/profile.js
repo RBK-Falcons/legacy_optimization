@@ -1,5 +1,6 @@
 import React from 'react';
 import Change from './api';
+import { Link } from 'react-router-dom';
 
 class Profile extends React.Component {
   state = {
@@ -20,15 +21,23 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log(this.state.user);
     return (
       <div className='profile'>
         <div className='overlay'>
           <div>
             <div className='left'>
-              <a href='/deposit' className='btn'>
+              <Link
+                className='btn'
+                to={{
+                  pathname: '/deposit',
+                  state: {
+                    userCurType:
+                      this.state.user !== null ? this.state.user.curType : '',
+                  },
+                }}
+              >
                 Deposit
-              </a>
+              </Link>
               <a href='/withdraw' className='btn'>
                 Withdraw
               </a>
@@ -54,10 +63,6 @@ class Profile extends React.Component {
                   </li>
                   <li>
                     Age: {this.state.user !== null ? this.state.user.age : ''}
-                  </li>
-                  <li>
-                    Balance:{' '}
-                    {this.state.user !== null ? this.state.user.total : ''}$
                   </li>
                   <li>
                     Joining Date:{' '}

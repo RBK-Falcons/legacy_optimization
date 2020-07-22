@@ -121,9 +121,9 @@ class SignUp extends React.Component {
                     onChange={this.handleChange.bind(this)}
                   >
                     <option>Choose...</option>
-                    <option>USD (US$)</option>
-                    <option>EUR (€)</option>
-                    <option>GBP (£)</option>
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
                   </select>
                 </div>
 
