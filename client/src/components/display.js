@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Display extends React.Component {
   state = {
@@ -31,6 +31,18 @@ class Display extends React.Component {
   }
 
   render() {
+    if (this.state.user !== null) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/userInfo',
+            state: {
+              user: this.state.user,
+            },
+          }}
+        />
+      );
+    }
     return (
       <div className='display'>
         <div className='overlay'>
