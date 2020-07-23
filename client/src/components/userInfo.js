@@ -5,6 +5,7 @@ class Info extends React.Component {
     total: '',
     lastdeposite: '',
     lastwitdraw: '',
+    curType:'',
   };
 
   componentDidMount() {
@@ -17,6 +18,7 @@ class Info extends React.Component {
       total: user.total,
       lastdeposite: user.lastdeposite,
       lastwitdraw: user.lastwitdraw,
+      curType:user.curType
     });
   }
 
@@ -27,9 +29,9 @@ class Info extends React.Component {
           <div>
             <h2>User Info</h2>
             <ul>
-              <li>Total: {this.state.total}</li>
-              <li>Last deposit: {this.state.lastdeposite}</li>
-              <li>Last withdraw: {this.state.lastwitdraw}</li>
+              <li>Total: {this.state.total}  {this.state.curType}</li>
+              <li>Last deposit: {this.state.lastdeposite} {this.state.curType}</li>
+              <li>Last withdraw: {this.state.lastwitdraw} {this.state.curType}</li>
             </ul>
           </div>
         </div>

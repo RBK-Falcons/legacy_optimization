@@ -89,7 +89,7 @@ app.post('/signin', async (req, res) => {
         res.status(500).send('The email or password is not correct');
         return;
       }
-      res.send(response);
+      res.send(response[0]);
     })
     .catch((err) => {
       res.status(500).send('Server Error');
