@@ -119,7 +119,7 @@ app.get('/profile/:creditcard', async (req, res) => {
 app.get('/getAllCur', async (req, res) => {
   await axios
     .get(
-      'http://api.currencylayer.com/live?access_key=8b428808e220c71b4622a3c5b1f7f672'
+      'http://api.currencylayer.com/live?access_key=41a12ad3d0cd14f943396a6f62ae0be1'
     )
     .then((result) => {
       res.send(result.data.quotes);
