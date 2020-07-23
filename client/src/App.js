@@ -11,6 +11,7 @@ import Withdraw from './components/withdraw';
 import Transfer from './components/transfer';
 import Display from './components/display';
 import Convert from './components/convert';
+import Info from './components/userInfo';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/transfer" component={Transfer} />
         <Route path="/display" component={Display} />
         <Route path="/convert" component={Convert} />
+        <Route path="/userInfo" component={Info} />
       </div>
     </Router>
   );

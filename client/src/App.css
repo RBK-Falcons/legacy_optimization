@@ -569,3 +569,40 @@ select {
 }
 
 /* End API Page */
+
+/* Start Display Info Page */
+
+.display-info {
+  background-image: url("../src/img/bg.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.display-info .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.display-info .overlay > div {
+  background-color: rgb(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 10px 50px 10px;
+  width: 500px;
+  margin: 20vh auto;
+  margin-bottom: auto;
+  text-align: center;
+}
+.display-info .overlay > div h2 {
+  font-size: 45px;
+}
+.display-info .overlay > div ul {
+  text-align: left;
+}
+.display-info .overlay > div ul li {
+  font-size: 25px;
+}
+
+/* End Display Info Page */
