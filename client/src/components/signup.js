@@ -72,7 +72,9 @@ class SignUp extends React.Component {
         phonenumber,
       })
       .then((response) => {
-        this.setState({ user: response.data });
+        //console.log(response);
+     this.setState({ user: response.data });
+        
       })
       .catch((err) => {
         console.log(err);

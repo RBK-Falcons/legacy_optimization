@@ -16,7 +16,7 @@ class Profile extends React.Component {
     const { user } = this.props.location.state;
     console.log(user);
     this.setState({
-      user: user[0],
+      user
     });
   }
 
