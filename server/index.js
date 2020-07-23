@@ -203,8 +203,21 @@ app.put('/withdraw', async (req, res) => {
     });
 });
 
-// /////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 
+app.get('/user/:idnumber', async (req, res) => {
+  const { idnumber } = req.params;
+  await UserModel.find({ idnumber })
+    .then((response) => {
+      const { creditcard, curType } = response[0];
+      res.send([creditcard, curType]);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+// /////////////////////////////////////////////////////////////////////
 // //// this promise hell is for transferring  money from one account to another
 // app.get('/transfer', (req, res) => {
 //   let { creditcard, id, amount } = req.query;

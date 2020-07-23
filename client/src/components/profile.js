@@ -50,9 +50,18 @@ class Profile extends React.Component {
               >
                 Withdraw
               </Link>
-              <a href='/transfer' className='btn'>
+              <Link
+                className='btn'
+                to={{
+                  pathname: '/transfer',
+                  state: {
+                    userCurType:
+                      this.state.user !== null ? this.state.user.curType : '',
+                  },
+                }}
+              >
                 Transfer
-              </a>
+              </Link>
               <a href='/display' className='btn'>
                 Display
               </a>
