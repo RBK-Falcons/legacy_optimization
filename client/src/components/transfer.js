@@ -70,16 +70,6 @@ class Transfer extends React.Component {
       .catch((err) => {
         console.log(err.message);
       });
-
-    // try {
-    //   axios.put('/withdraw', {
-    //     creditcard: sender,
-    //     amount,
-    //   });
-    //   this.x(reciever);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   }
 
   render() {
