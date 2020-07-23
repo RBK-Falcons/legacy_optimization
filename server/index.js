@@ -161,7 +161,7 @@ app.put('/deposit', async (req, res) => {
     .then((response) => {
       console.log(response.nModified);
       if (!response.nModified) {
-        throw new Error('User not found');
+        throw new Error('creditcard not found');
       }
       res.send(`${amount} was added to your account`);
     })
