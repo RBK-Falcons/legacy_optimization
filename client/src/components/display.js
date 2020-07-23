@@ -1,10 +1,11 @@
 import React from 'react';
-// import axios from 'axios';
-// import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Display extends React.Component {
   state = {
     creditcard: '',
+    user: null,
   };
 
   handleChange(e) {
@@ -13,22 +14,40 @@ class Display extends React.Component {
     });
   }
 
-  // handlesubmit(e) {
-  //     e.preventDefault();
-  //     axios.get('display')
-  //         .then((res) => {
-  //         })
-  //         .catch((err) => {
-  //             console.log(err);
-  //         });
-  // }
+  handlesubmit(e) {
+    e.preventDefault();
+    const { creditcard } = this.state;
+    axios
+      .get(`/profile/${creditcard}`)
+      .then((resp) => {
+        this.setState({
+          user: resp.data,
+        });
+        console.log(resp.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
+    if (this.state.user !== null) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/userInfo',
+            state: {
+              user: this.state.user,
+            },
+          }}
+        />
+      );
+    }
     return (
       <div className='display'>
         <div className='overlay'>
           <div>
-            <form>
+            <form onSubmit={this.handlesubmit.bind(this)}>
               <label>Enter your credit card number</label>
               <input
                 type='number'

@@ -98,27 +98,24 @@ app.post('/signin', async (req, res) => {
 
 ///////////////////////////////////////////////////////////////////
 
-// /// used for displaying user's finantial info
-// app.get('/profile/:creditcard', (req, res) => {
-//   var { creditcard } = req.params;
-//   account
-//     .findOne({ creditcard })
-//     .then((result) => {
-//       if (result !== null) {
-//         res.send(result);
-//       } else {
-//         res.send({ message: 'Invalid Credit Card!' });
-//       }
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//       console.log('error in finding for display======>', err);
-//     });
-// });
+/// used for displaying user's finantial info
+app.get('/profile/:creditcard', async (req, res) => {
+  var { creditcard } = req.params;
+  await UserModel.findOne({ creditcard })
+    .then((response) => {
+      if (response.length == 0) {
+        throw new Error('There is no user with this creditcard');
+      }
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err.message);
+    });
+});
 
 //////////////////////////////////////////////////////////////////
-// For displaying currency prices
 
+// For displaying currency prices
 app.get('/getAllCur', async (req, res) => {
   await axios
     .get(
@@ -216,78 +213,6 @@ app.get('/user/:idnumber', async (req, res) => {
       res.send(err);
     });
 });
-
-// /////////////////////////////////////////////////////////////////////
-// //// this promise hell is for transferring  money from one account to another
-// app.get('/transfer', (req, res) => {
-//   let { creditcard, id, amount } = req.query;
-//   amount = Number(amount);
-//   let reciever;
-//   let sender;
-//   let recieverAcc;
-//   account
-//     .findOne({ creditcard })
-//     .then((result) => {
-//       if (result !== null) {
-//         sender = result.total;
-//         signUp
-//           .findOne({ idnumber: id })
-//           .then((result) => {
-//             if (result !== null) {
-//               let credit = result.creditcard;
-//               account
-//                 .findOne({ creditcard: credit })
-//                 .then((result) => {
-//                   if (result !== null) {
-//                     recieverAcc = result;
-//                     reciever = result.total;
-//                     if (sender - amount > 0) {
-//                       sender = sender - amount;
-//                       reciever = reciever + amount;
-//                       account
-//                         .updateOne({ creditcard }, { $set: { total: sender } })
-//                         .then((result) => {
-//                           let creditNum = recieverAcc.creditcard;
-//                           account
-//                             .updateOne(
-//                               { creditcard: creditNum },
-//                               { $set: { total: reciever } }
-//                             )
-//                             .then((result) => {
-//                               res.send(`Successfully transfered ${amount}`);
-//                             })
-//                             .catch((err) => {
-//                               console.log(err, 'Reciever update');
-//                             });
-//                         })
-//                         .catch((err) => {
-//                           console.log(err, 'Sender update');
-//                         });
-//                     } else {
-//                       res.send('insufficient balance!');
-//                     }
-//                   } else {
-//                     res.send("Cannot find reciever's credit card");
-//                   }
-//                 })
-//                 .catch((err) => {
-//                   console.log(err, 'Failed to find reciever!');
-//                 });
-//             } else {
-//               res.send("Reciever ID doesn't exist");
-//             }
-//           })
-//           .catch((err) => {
-//             console.log(err, 'Failed to find reciever ID!');
-//           });
-//       } else {
-//         res.send('Invalid credit card!');
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err, 'Failed to reach sender credit card!');
-//     });
-// });
 
 // //////////////////////////////////////////////////////////////////////////
 
