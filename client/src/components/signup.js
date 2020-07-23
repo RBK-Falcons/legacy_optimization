@@ -16,7 +16,26 @@ class SignUp extends React.Component {
     occupation: '',
     phonenumber: '',
     user: null,
+    allCur: [],
   };
+
+  componentDidMount() {
+    axios
+      .get('/getAllCur')
+      .then((response) => {
+        var x = Object.keys(response.data);
+        var y = [];
+        for (var i in x) {
+          y.push(x[i].substring(3));
+        }
+        this.setState({
+          allCur: y,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   handleChange(e) {
     this.setState({
@@ -121,9 +140,9 @@ class SignUp extends React.Component {
                     onChange={this.handleChange.bind(this)}
                   >
                     <option>Choose...</option>
-                    <option>USD</option>
-                    <option>EUR</option>
-                    <option>GBP</option>
+                    {this.state.allCur.map((e, i) => {
+                    return <option key={i}>{e}</option>;
+                   })}
                   </select>
                 </div>
 
