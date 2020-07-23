@@ -24,6 +24,7 @@ class SignIn extends React.Component {
         password,
       })
       .then((response) => {
+        console.log(response);
         this.setState({ user: response.data });
       })
       .catch((err) => {
