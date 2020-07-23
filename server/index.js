@@ -170,38 +170,54 @@ app.put('/deposit', async (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////
-
 // This is for the withdraw part, it looks for the credit card number provided and updates user's info accordingly.
 
-// app.put('/withdraw', async (req, res) => {
-//   var { creditcard, amount } = req.body;
+app.put('/withdraw', async (req, res) => {
+  // User credit and the amount we want to withdraw
+  var { creditcard, amount } = req.body;
 
-//   await UserModel.find({ creditcard })
-//     .then(async (response) => {
-//       if (response.length == 0) {
-//         res.status(500).send('There is no user with this creditcart');
-//         return;
-//       }
-//       if (response.total - amount < 0) {
-//         res.status(500).send(`Insufficiant Balance! Cannot withdraw ${amount}`);
-//       }
-//       await UserModel.where({ creditcard })
-//         .update({ $inc: { total: amount }, $set: { lastdeposite: amount } })
-//         .exec()
-//         .then((response) => {
-//           res.send(`${amount} was removed to your account`);
-//         })
-//         .catch((err) => {
-//           res.status(500).send(err);
-//         });
-//     })
-//     .catch((err) => {
-//       res.status(500).send(err);
-//     });
-// });
+  await UserModel.find({ creditcard })
+    .then(async (response) => {
+      if (response.length == 0) {
+        throw new Error('There is no user with this creditcart');
+      }
+      return response[0];
+    })
+    .then((user) => {
+      if (user.total < amount) {
+        throw new Error('Insufficient balance');
+      }
+      return user;
+    })
+    .then(async (user) => {
+      await UserModel.where({ creditcard })
+        .update({ $inc: { total: -amount }, $set: { lastwitdraw: amount } })
+        .exec();
+      return user;
+    })
+    .then((user) => {
+      res.send(`Successfully Withdrew ${amount} ${user.curType}`);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+});
+
+/////////////////////////////////////////////////////////////////////////
+
+app.get('/user/:idnumber', async (req, res) => {
+  const { idnumber } = req.params;
+  await UserModel.find({ idnumber })
+    .then((response) => {
+      const { creditcard, curType } = response[0];
+      res.send([creditcard, curType]);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
 
 // /////////////////////////////////////////////////////////////////////
-
 // //// this promise hell is for transferring  money from one account to another
 // app.get('/transfer', (req, res) => {
 //   let { creditcard, id, amount } = req.query;

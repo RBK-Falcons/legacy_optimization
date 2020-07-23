@@ -38,12 +38,30 @@ class Profile extends React.Component {
               >
                 Deposit
               </Link>
-              <a href='/withdraw' className='btn'>
+              <Link
+                className='btn'
+                to={{
+                  pathname: '/withdraw',
+                  state: {
+                    userCurType:
+                      this.state.user !== null ? this.state.user.curType : '',
+                  },
+                }}
+              >
                 Withdraw
-              </a>
-              <a href='/transfer' className='btn'>
+              </Link>
+              <Link
+                className='btn'
+                to={{
+                  pathname: '/transfer',
+                  state: {
+                    userCurType:
+                      this.state.user !== null ? this.state.user.curType : '',
+                  },
+                }}
+              >
                 Transfer
-              </a>
+              </Link>
               <a href='/display' className='btn'>
                 Display
               </a>
@@ -54,7 +72,7 @@ class Profile extends React.Component {
                 <ul>
                   <h2>User's Info</h2>
                   <li>
-                    First Name:
+                    First Name:{' '}
                     {this.state.user !== null ? this.state.user.firstname : ''}
                   </li>
                   <li>
