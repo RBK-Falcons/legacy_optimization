@@ -25,6 +25,11 @@
   background-color: #03256c;
 }
 
+.alert {
+  text-align: center;
+  margin-bottom: -20px;
+}
+
 /* End Main Rule */
 
 /* start landing page*/
