@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Lobster&family=Montserrat&family=Open+Sans&family=Oswald&family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Lobster&family=Montserrat&family=Open+Sans&family=Oswald&family=Roboto&display=swap');
 
 /* Start Main Rule */
 
@@ -45,7 +45,7 @@
 }
 .title {
   color: #fff;
-  font-family: "Lobster", cursive;
+  font-family: 'Lobster', cursive;
   font-size: 80px;
   font-weight: normal;
   line-height: 54px;
@@ -234,7 +234,7 @@ select {
 /* Start Profile Page */
 
 .profile {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -267,14 +267,14 @@ select {
   padding: 30px 50px;
   margin-top: 100px;
   margin-bottom: auto;
-  font-family: "arial", serif;
+  font-family: 'arial', serif;
   font-weight: bold;
 }
 .profile .info ul li {
   display: block;
   text-decoration: none;
   font-size: 23px;
-  font-family: "arial", serif;
+  font-family: 'arial', serif;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -284,7 +284,7 @@ select {
 /* Start Deposit Page */
 
 .deposit {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -335,7 +335,7 @@ select {
 /* Start Withdraw Page */
 
 .withdraw {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -386,7 +386,7 @@ select {
 /* Start Transfer Page */
 
 .transfer {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -437,7 +437,7 @@ select {
 /* Start Display Page */
 
 .display {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -488,7 +488,7 @@ select {
 /* Start Convert Page */
 
 .convert {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -557,7 +557,7 @@ select {
   padding: 30px 50px;
   margin-top: auto;
   margin-bottom: auto;
-  font-family: "arial", serif;
+  font-family: 'arial', serif;
   font-weight: bold;
 }
 .currency {
@@ -573,7 +573,7 @@ select {
 /* Start Display Info Page */
 
 .display-info {
-  background-image: url("../src/img/bg.jpg");
+  background-image: url('../src/img/bg.jpg');
   background-size: cover;
   height: 100vh;
 }
@@ -589,7 +589,7 @@ select {
 .display-info .overlay > div {
   background-color: rgb(255, 255, 255, 0.7);
   border-radius: 5px;
-  padding: 10px 50px 10px;
+  padding: 10px 50px 20px;
   width: 500px;
   margin: 20vh auto;
   margin-bottom: auto;
