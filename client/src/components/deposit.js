@@ -9,6 +9,7 @@ class Deposit extends React.Component {
     creditcard: '',
     userCurType: '',
     allCur: [],
+    msg: '',
   };
 
   componentDidMount() {
@@ -62,15 +63,15 @@ class Deposit extends React.Component {
             amount,
           })
           .then((resp) => {
-            console.log(resp.data);
             this.setState({
               currencyType: '',
               number: '',
               creditcard: '',
+              msg: resp.data,
             });
           })
           .catch((err) => {
-            console.log(err);
+            console.log('--->', err);
           });
       })
       .catch((err) => {
@@ -111,6 +112,7 @@ class Deposit extends React.Component {
                   return <option key={i}>{e}</option>;
                 })}
               </select>
+              <h2 className='alert'>{this.state.msg}</h2>
               <button className='btn'>Confirm</button>
             </form>
           </div>

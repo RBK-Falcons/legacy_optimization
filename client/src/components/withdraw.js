@@ -8,6 +8,7 @@ class Withdraw extends React.Component {
     creditcard: '',
     userCurType: '',
     allCur: [],
+    msg: '',
   };
 
   componentDidMount() {
@@ -65,6 +66,7 @@ class Withdraw extends React.Component {
           currencyType: '',
           number: '',
           creditcard: '',
+          msg: resp.data,
         });
         console.log(resp.data);
       })
@@ -106,7 +108,7 @@ class Withdraw extends React.Component {
                   return <option key={i}>{e}</option>;
                 })}
               </select>
-
+              <h2 className='alert'>{this.state.msg}</h2>
               <button className='btn'>Confirm</button>
             </form>
           </div>

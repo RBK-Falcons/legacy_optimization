@@ -159,10 +159,14 @@ app.put('/deposit', async (req, res) => {
     .update({ $inc: { total: amount }, $set: { lastdeposite: amount } })
     .exec()
     .then((response) => {
+      console.log(response.nModified);
+      if (!response.nModified) {
+        throw new Error('User not found');
+      }
       res.send(`${amount} was added to your account`);
     })
     .catch((err) => {
-      res.status(500).send(err);
+      res.send(err.message);
     });
 });
 
@@ -196,7 +200,7 @@ app.put('/withdraw', async (req, res) => {
       res.send(`Successfully Withdrew ${amount} ${user.curType}`);
     })
     .catch((err) => {
-      res.status(500).send(err.message);
+      res.send(err.message);
     });
 });
 
