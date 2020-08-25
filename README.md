@@ -1,6 +1,6 @@
 # legacy_proj (Bank system)
 
-EduMe is Educational Platform That Connects The Teachers With The Students,
+Bank system is banck Platform That Connects The Teachers With The Students,
 It Provides An Interface That Provides The Required Academic Content In One Place.
 
 # Technologies
