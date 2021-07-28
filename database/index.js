@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   mongoose
     .connect(
-      'mongodb+srv://Falcons:Falcons@greenfield.64vuq.mongodb.net/BankOptm?retryWrites=true&w=majority',
+      'MongoDB url',
       { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
     )
     .then(() => {
